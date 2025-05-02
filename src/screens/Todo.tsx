@@ -1,29 +1,49 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { TextInput, Button, View, StyleSheet, Text } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { useTodoStore } from '../store/todoStore.ts';
 
 export const Todo = () => {
   const route = useRoute();
-  const { id } = route.params as { id: string };
-  const todo = useTodoStore(state => state.todos.find(t => t.id === id));
+  const navigation = useNavigation();
+  const { id } = route.params as { id: number };
+  const todo = useTodoStore((state) => state.todos.find((t) => t.id === id));
+  const updateTodo = useTodoStore((state) => state.updateTodo);
+
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    if (todo) {
+      setTitle(todo.title);
+      setDescription(todo.description);
+    }
+  }, [todo]);
+
+  const handleUpdate = () => {
+    updateTodo(id, title, description);
+    navigation.goBack();
+  };
 
   if (!todo) {
-    return (
-      <View style={styles.container}>
-        <Text>Todo not found</Text>
-      </View>
-    );
+    return <View><Text>Todo not found</Text></View>;
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Edit Todo</Text>
-      <Text>ID: {todo.id}</Text>
-      <Text>Title: {todo.title}</Text>
-      <Text>Description: {todo.description}</Text>
-      <Text>Status: {todo.completed ? 'Completed' : 'Active'}</Text>
-      {/* Додай форму для редагування за потреби */}
+      <TextInput
+        value={title}
+        onChangeText={setTitle}
+        placeholder="Title"
+        style={styles.input}
+      />
+      <TextInput
+        value={description}
+        onChangeText={setDescription}
+        placeholder="Description"
+        style={styles.input}
+      />
+      <Button title="Update" onPress={handleUpdate} />
     </View>
   );
 };
@@ -32,9 +52,11 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
   },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
+  input: {
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
     marginBottom: 12,
   },
 });

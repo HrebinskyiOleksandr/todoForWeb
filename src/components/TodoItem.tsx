@@ -18,28 +18,51 @@ export const TodoItem: React.FC<Props> = ({
   completed,
   toggleTodo,
   deleteTodo,
-  onPress
+  onPress,
 }) => {
   return (
-    <Pressable onPress={() => onPress(id)} style={styles.container}>
-      <View>
+    <View style={styles.container}>
+      <Pressable onPress={() => toggleTodo(id)} style={styles.checkbox}>
+        <Text>{completed ? '✅' : '⬜️'}</Text>
+      </Pressable>
+
+      <Pressable onPress={() => onPress(id)} style={styles.content}>
         <Text style={styles.title}>{title}</Text>
         <Text>{description}</Text>
-        <Text>Status: {completed ? 'Completed' : 'Active'}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+
+      <Pressable onPress={() => deleteTodo(id)} style={styles.deleteButton}>
+        <Text style={styles.deleteText}>🗑️</Text>
+      </Pressable>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f2f2f2',
     padding: 10,
     borderRadius: 8,
-    backgroundColor: '#f2f2f2',
     marginBottom: 8,
+    gap: 10,
+  },
+  checkbox: {
+    padding: 4,
+  },
+  content: {
+    flex: 1,
   },
   title: {
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  deleteButton: {
+    padding: 4,
+  },
+  deleteText: {
+    color: 'red',
+    fontSize: 18,
   },
 });
