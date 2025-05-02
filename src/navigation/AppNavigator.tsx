@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {RouteKey} from "../types/navigator.ts";
 import {TodoList} from "../screens/TodoList.tsx";
 import {CreateTodo} from "../screens/CreateTodo.tsx";
+import {Todo} from "../screens/Todo.tsx";
 
 const Stack = createNativeStackNavigator();
 export const AppNavigator = () => {
@@ -13,6 +14,7 @@ export const AppNavigator = () => {
     >
       <Stack.Screen name={RouteKey.TodoList} component={TodoList}/>
       <Stack.Screen name={RouteKey.CreateTodo} component={CreateTodo}/>
+      <Stack.Screen name={RouteKey.Todo} component={Todo}/>
     </Stack.Navigator>
   );
 }
