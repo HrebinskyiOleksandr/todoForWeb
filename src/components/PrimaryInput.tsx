@@ -1,10 +1,11 @@
 import React from 'react';
-import { TextInput, StyleSheet, TextInputProps } from 'react-native';
+import {TextInput, StyleSheet, ViewStyle} from 'react-native';
 
-interface InputProps extends TextInputProps {
+interface InputProps {
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
+  style?: ViewStyle;
 }
 
 export const PrimaryInput: React.FC<InputProps> = ({ value, onChangeText, placeholder, style, ...rest }) => {

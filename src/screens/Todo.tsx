@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TextInput, Button, View, StyleSheet, Text } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useTodoStore } from '../store/todoStore.ts';
+import {PrimaryButton} from "../components/PrimaryButton.tsx";
 
 export const Todo = () => {
   const route = useRoute();
@@ -43,7 +44,7 @@ export const Todo = () => {
         placeholder="Description"
         style={styles.input}
       />
-      <Button title="Update" onPress={handleUpdate} />
+      <PrimaryButton title="Update" onPress={handleUpdate} />
     </View>
   );
 };

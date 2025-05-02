@@ -13,22 +13,25 @@ interface TodoCreateFormData {
 }
 
 export const CreateTodo: React.FC = () => {
-  const { control, handleSubmit, reset } = useForm<TodoCreateFormData>({
+  const { control, handleSubmit, reset,watch } = useForm<TodoCreateFormData>({
     defaultValues: {
       title: '',
       description: '',
     },
   });
   const navigation = useNavigation();
-
   const addTodo = useTodoStore(state => state.addTodo);
 
+  const title = watch('title');
+  const description = watch('description');
   const onSubmit = (data: TodoCreateFormData) => {
     if (!data.title.trim()) return;
     addTodo(data.title.trim(), data.description.trim());
     reset();
     navigation.navigate(RouteKey.TodoList)
   };
+
+  const isButtonDisabled = !title.trim() || !description.trim();
 
   return (
       <View style={styles.container}>
@@ -58,7 +61,7 @@ export const CreateTodo: React.FC = () => {
             />
           )}
         />
-        <PrimaryButton title="Add" onPress={handleSubmit(onSubmit)} />
+        <PrimaryButton title="Add" onPress={handleSubmit(onSubmit)} disabled={isButtonDisabled}/>
       </View>
   );
 };

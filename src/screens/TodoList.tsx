@@ -13,7 +13,7 @@ export const TodoList: React.FC = () => {
   const navigation = useNavigation();
 
   const renderItem = (item) => (
-    <View key={item.id} style={{ backgroundColor: 'lightgray', padding: 10, marginBottom: 5 }}>
+    <View key={item.id}>
       <TodoItem
         id={item.id}
         title={item.title}
