@@ -1,21 +1,29 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
   disabled?: boolean;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
 }
 
-export const PrimaryButton: React.FC<ButtonProps> = ({ title, onPress, disabled = false }) => {
+export const PrimaryButton: React.FC<ButtonProps> = ({
+  title,
+  onPress,
+  disabled = false,
+  style,
+  textStyle
+}) => {
   return (
     <TouchableOpacity
-      style={[styles.button, disabled && styles.disabled]}
+      style={[styles.button, disabled && styles.disabled, style]}  // Застосовуємо передані стилі
       onPress={onPress}
       activeOpacity={0.7}
       disabled={disabled}
     >
-      <Text style={styles.text}>{title}</Text>
+      <Text style={[styles.text, textStyle]}>{title}</Text>  {/* Застосовуємо передані стилі для тексту */}
     </TouchableOpacity>
   );
 };

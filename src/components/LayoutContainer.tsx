@@ -26,5 +26,6 @@ const styles = StyleSheet.create({
   wrapper: {
     alignSelf: 'center',
     flex: 1,
+    paddingTop: 80,
   },
 });
