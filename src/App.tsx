@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {Text, View} from "react-native";
+import React from 'react';
 import {NavigationContainer} from "@react-navigation/native";
 import {AppNavigator} from "./navigation/AppNavigator.tsx";
+import {LayoutContainer} from "./components/LayoutContainer.tsx";
 
 function App(): React.JSX.Element {
   return (
-    <View style={{flex: 1}}>
+    <LayoutContainer>
       <NavigationContainer>
         <AppNavigator/>
       </NavigationContainer>
-    </View>
+    </LayoutContainer>
     );
 }
 

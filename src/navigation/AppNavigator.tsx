@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {RouteKey} from "../core/typing/enums/navigator.ts";
+import {RouteKey} from "../types/navigator.ts";
 import {TodoList} from "../screens/TodoList.tsx";
 
 const Stack = createNativeStackNavigator();
