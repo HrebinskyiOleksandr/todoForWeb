@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import {useTodoStore} from "../store/todoStore.ts";
 import {PrimaryButton} from "../components/PrimaryButton.tsx";

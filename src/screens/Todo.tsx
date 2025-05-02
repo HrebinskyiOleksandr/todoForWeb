@@ -3,6 +3,7 @@ import { TextInput, Button, View, StyleSheet, Text } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useTodoStore } from '../store/todoStore.ts';
 import {PrimaryButton} from "../components/PrimaryButton.tsx";
+import {PrimaryInput} from "../components/PrimaryInput.tsx";
 
 export const Todo = () => {
   const route = useRoute();
@@ -26,19 +27,15 @@ export const Todo = () => {
     navigation.goBack();
   };
 
-  if (!todo) {
-    return <View><Text>Todo not found</Text></View>;
-  }
-
   return (
     <View style={styles.container}>
-      <TextInput
+      <PrimaryInput
         value={title}
         onChangeText={setTitle}
         placeholder="Title"
         style={styles.input}
       />
-      <TextInput
+      <PrimaryInput
         value={description}
         onChangeText={setDescription}
         placeholder="Description"

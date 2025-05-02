@@ -8,7 +8,6 @@ interface TodoState {
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
   updateTodo: (id: number, title: string, description: string) => void;
-  clearCompleted: () => void;
 }
 
 export const useTodoStore = create<TodoState>((set) => ({
@@ -54,10 +53,5 @@ export const useTodoStore = create<TodoState>((set) => ({
           }
           : todo
       ),
-    })),
-
-  clearCompleted: () =>
-    set((state) => ({
-      todos: state.todos.filter((todo) => todo.completed === false),
     })),
 }));
